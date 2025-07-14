@@ -1,0 +1,13 @@
+#parent {
+    width: 500px;
+    height: 500px;
+    border: 1px solid goldenrod;
+    padding: 10px
+}
+
+#child {
+    width: 70%;
+    height: 70%;
+    border: 1px solid blueviolet;
+    padding: 10px
+}
