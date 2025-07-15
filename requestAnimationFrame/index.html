@@ -1,0 +1,25 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="style.css" />
+    <title> Request Animation frame example</title>
+</head>
+<body>
+    <div id="box"></div>
+    <script>
+        const box = document.getElementById('box')
+        let len = 0
+        const animate = timeStamp => {
+            len += 1
+            box.style.transform = `translateX(${len}px)`
+
+            if(len < 400) {
+             requestAnimationFrame(animate)
+            }
+        }
+        requestAnimationFrame(animate)
+
+    </script>
+</body>
+
+</html>
