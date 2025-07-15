@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Client - WebSocket</title>
+  </head>
+  <body>
+    <input type="text" id="user-text" placeholder="Enter your Name" />
+    <input type="text" id="input-text" placeholder="Enter your message" />
+    <button onclick="sendMessage()">Send</button>
+
+    <ul id="messages"></ul>
+
+    <script>
+      const socket = new WebSocket("ws://localhost:3000");
+      const list = document.getElementById("messages");
+
+      socket.onopen = () => {
+        console.log("Client connected to server");
+      };
+
+      socket.onmessage = (payload) => {
+        console.log({ payload });
+        const message = payload.data;
+        const item = document.createElement("li");
+        item.textContent = message;
+        list.appendChild(item);
+      };
+
+      socket.onclose = () => {
+        console.log("Client disconnected");
+      };
+
+      socket.onerror = (err) => {
+        console.log("Web socket error-", err);
+      };
+
+      const sendMessage = () => {
+        const input = document.getElementById("input-text");
+        const user = document.getElementById("user-text");
+        const msg = `${user.value} : ${input.value}`;
+        socket.send(msg);
+
+        input.value = "";
+      };
+    </script>
+  </body>
+</html>
