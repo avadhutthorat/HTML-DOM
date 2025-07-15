@@ -6,18 +6,30 @@
 </head>
 <body>
     <div id="box"></div>
+    <button id="start">Start Animation</button>
+    <button id="stop">Stop Animation</button>
     <script>
         const box = document.getElementById('box')
-        let len = 0
+        const start = document.getElementById('start')
+        const stop = document.getElementById('stop')
+        let len = 0;
+        let frameId
         const animate = timeStamp => {
             len += 1
             box.style.transform = `translateX(${len}px)`
 
-            if(len < 400) {
-             requestAnimationFrame(animate)
+            if(len < 600) {
+            frameId = requestAnimationFrame(animate)
             }
         }
-        requestAnimationFrame(animate)
+       frameId = requestAnimationFrame(animate)
+
+       stop.addEventListener('click', () => {
+        cancelAnimationFrame(frameId)
+       })
+       start.addEventListener('click', () => {
+        frameId = requestAnimationFrame(animate)
+       })
 
     </script>
 </body>

@@ -2,5 +2,8 @@
     width: 50px;
     padding: 30px;
     border: 1px solid purple;
+}
 
+#stop {
+    margin-top: 30px;
 }
