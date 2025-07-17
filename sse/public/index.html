@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSE</title>
+</head>
+<body>
+  <h1>Real-Time Clock (Server-Sent Events)</h1>
+  <p>Server Time: <span id="time">loading...</span></p>
+
+  <script>
+    const eventSource = new EventSource('/events');
+
+    eventSource.onmessage = function (event) {
+      document.getElementById('time').textContent = event.data;
+      console.log('Received:', event.data);
+    };
+
+    eventSource.onerror = function (error) {
+      console.error('SSE error:', error);
+    };
+  </script>
+</body>
+</html>
