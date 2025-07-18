@@ -11,6 +11,7 @@ app.get('/events', (req, res) => {
   res.setHeader('Cache-Control', 'no-cache');
   res.setHeader('Connection', 'keep-alive');
 
+  
   const sendEvent = () => {
     const now = new Date().toLocaleTimeString();
     res.write(`data: ${now}\n\n`);

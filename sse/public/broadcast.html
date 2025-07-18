@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BroadCast events</title>
+</head>
+<body>
+
+    <h1>Broad Cast events</h1>
+    <p id="message"> Message - Waiting...</p>
+
+    <script>
+        const eventSource = new EventSource('/events')
+        const parent = document.getElementById('message')
+        
+        eventSource.onmessage = function(ev) {
+            const paragraph = document.createElement('p')
+            console.log("Message recived on client")
+            paragraph.textContent = `${ev.data} !!`
+            parent.appendChild(paragraph)
+        }
+
+        eventSource.onerror = function(err) {
+            console.log("Error captured on client -", err)
+        }
+    </script>
+</body>
+</html>
