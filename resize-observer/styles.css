@@ -1,0 +1,11 @@
+.container {
+    width: 90%;
+    height: 50%;
+    display: flex;
+}
+
+#box {
+    width: 300px;
+    height: 400px;
+    background-color: red;
+}
